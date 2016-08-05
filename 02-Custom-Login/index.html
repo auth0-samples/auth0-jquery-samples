@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Auth0-jQuery</title>
+  <meta charset="utf-8">
+  <script src="//code.jquery.com/jquery-3.1.0.min.js"></script>
+  <script src="//cdn.auth0.com/w2/auth0-7.0.3.min.js"></script>
+  <script src="./app.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./app.css">
+</head>
+<body>
+  <div class="container">
+    <form class="form-signin">
+      <h2 class="form-signin-heading">Please sign in</h2>
+      <label for="inputEmail" class="sr-only">Email address</label>
+      <input type="text" id="username" class="form-control" placeholder="Email address" autofocus required>
+      <label for="inputPassword" class="sr-only">Password</label>
+      <input type="password" id="password" class="form-control" placeholder="Password" required>
+      <button class="btn btn-lg btn-default" type="button" id="btn-login">Sign In</button>
+      <button class="btn btn-lg btn-primary" type="button" id="btn-register">Sign Up</button>
+      <button class="btn btn-lg btn-danger" type="button" id="btn-google">Google</button>
+    </form>
+    <div class="form-signin logged-in">
+      <button class="bton btn-lg btn-default btn-block" type="button" id="btn-logout">Sign out</button>
+    </div>
+  </div>
+</body>
+</html>
