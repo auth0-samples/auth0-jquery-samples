@@ -1,0 +1,16 @@
+body {
+    background-color: #eee;
+    padding-bottom: 40px;
+    padding-top: 40px;
+}
+.centered {
+    font-weight: normal;
+    margin: 0 auto;
+    max-width: 330px;
+    padding: 15px;
+    text-align: center;
+}
+
+#btn-logout {
+  display: none;
+}
