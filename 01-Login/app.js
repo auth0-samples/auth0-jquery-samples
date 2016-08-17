@@ -24,20 +24,8 @@ $(document).ready(function() {
       }
       localStorage.setItem('id_token', authResult.idToken);
       // Display user information
-      $('.nickname').text(profile.nickname);
-      $('.btn-login').hide();
-      $('.avatar').attr('src', profile.picture).show();
-      $('.btn-logout').show();
+      show_profile_info(profile);
     });
-  });
-
-  $.ajaxSetup({
-    'beforeSend': function(xhr) {
-      if (localStorage.getItem('id_token')) {
-        xhr.setRequestHeader('Authorization',
-              'Bearer ' + localStorage.getItem('id_token'));
-      }
-    }
   });
 
   //retrieve the profile:
@@ -49,14 +37,16 @@ $(document).ready(function() {
           return alert('There was an error getting the profile: ' + err.message);
         }
         // Display user information
-        $('.nickname').text(profile.nickname);
-        if (profile && profile.nickname) {
-          $('.btn-login').hide();
-          $('.avatar').attr('src', profile.picture).show();
-          $('.btn-logout').show();
-        }
+        show_profile_info(profile);
       });
     }
+  };
+
+  var show_profile_info = function(profile) {
+     $('.nickname').text(profile.nickname);
+     $('.btn-login').hide();
+     $('.avatar').attr('src', profile.picture).show();
+     $('.btn-logout').show();
   };
 
   var logout = function() {

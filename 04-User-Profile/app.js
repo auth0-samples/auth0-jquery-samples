@@ -9,7 +9,7 @@ $(document).ready(function() {
     additionalSignUpFields: [{
       name: "address",                              // required
       placeholder: "Enter your address",            // required
-      icon: "https://example.com/address_icon.png", // optional
+      icon: "./address_icon.png",                   // optional
       validator: function(value) {                  // optional
         // only accept addresses with more than 10 characters
         return value.length > 10;
