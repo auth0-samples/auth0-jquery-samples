@@ -22,7 +22,7 @@ Go to `http://localhost:3000` and you'll see the app running :).
 <head>
   ...
   <!-- Auth0 lock script -->
-  <script src="//cdn.auth0.com/js/lock/10.0/lock.min.js"></script>
+  <script src="//cdn.auth0.com/js/lock/10.1.0/lock.min.js"></script>
   ...
 </head>
 ```
