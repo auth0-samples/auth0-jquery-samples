@@ -1,3 +1,3 @@
-var AUTH0_CLIENT_ID='BUIJSW9x60sIHBw8Kd9EmCbj8eDIFxDC';
-var AUTH0_DOMAIN='samples.auth0.com';
+var AUTH0_CLIENT_ID='{CLIENT_ID}';
+var AUTH0_DOMAIN='{DOMAIN}';
 var AUTH0_CALLBACK_URL=location.href;
