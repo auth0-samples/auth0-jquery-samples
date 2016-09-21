@@ -2,7 +2,7 @@
 
 This is the seed project you need to use if you're going to create an app that will use Auth0 + jQuery.
 
-You can read a quickstart guide for this sample [here](https://auth0.com/docs/quickstart/spa/jquery/00-starter-seed).
+You can read a quickstart guide for this sample [here](https://auth0.com/docs/quickstart/spa/jquery).
 
 ## Running the example
 

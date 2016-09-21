@@ -1,7 +1,3 @@
-# auth0-jquery-samples
+# Auth0 Jquery Samples
 
-Auth0 Jquery examples
-
-The example from the repo https://github.com/auth0/auth0-jquery needs to be moved to this one
-
-Please remember to use the same structure as https://github.com/auth0-samples/auth0-angularjs-sample
+Repository for the Jquery examples. You can read a quickstart guide for these samples [here](https://auth0.com/docs/quickstart/spa/jquery).
