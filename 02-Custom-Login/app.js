@@ -1,84 +1,92 @@
 $(document).ready(function() {
-  var auth0 = null;
-  auth0 = new Auth0({
+
+  auth = new auth0.WebAuth({
     domain: AUTH0_DOMAIN,
     clientID: AUTH0_CLIENT_ID,
-    callbackOnLocationHash: true,
-    callbackURL: 'http://YOUR_APP/callback',
+    redirectUri: window.location.href,
+    responseType: 'token id_token'
   });
 
-  $('#btn-login').on('click', function(ev) {
-    ev.preventDefault();
+  $('#btn-login').on('click', login);
+  $('#btn-register').on('click', signup);
+  $('#btn-google').on('click', loginWithGoogle);
+  $('#btn-logout').on('click', logout);
+  
+  function login() {
     var username = $('#username').val();
     var password = $('#password').val();
-    auth0.login({
-      connection: 'Username-Password-Authentication',
-      responseType: 'token',
-      email: username,
+    auth.client.login({
+      realm: 'Username-Password-Authentication',
+      username: username,
       password: password,
-    }, function(err) {
+    }, function(err, authResult) {
       if (err) {
         alert("something went wrong: " + err.message);
-      } else {
-        show_logged_in(username);
+        return
+      }
+      if (authResult && authResult.idToken && authResult.accessToken) {
+        setUser(authResult);
+        show_logged_in();
       }
     });
-  });
+  }
 
-  $('#btn-register').on('click', function(ev) {
-    ev.preventDefault();
+  function signup() {
     var username = $('#username').val();
     var password = $('#password').val();
-    auth0.signup({
+    auth.redirect.signupAndLogin({
       connection: 'Username-Password-Authentication',
-      responseType: 'token',
       email: username,
       password: password,
     }, function(err) {
       if (err) alert("something went wrong: " + err.message);
     });
-  });
+  }
 
-  $('#btn-google').on('click', function(ev) {
-    ev.preventDefault();
-    auth0.login({
+  function loginWithGoogle() {
+    auth.authorize({
       connection: 'google-oauth2'
-    }, function(err) {
-      if (err) alert("something went wrong: " + err.message);
     });
-  });
+  }
 
-  $('#btn-logout').on('click', function(ev) {
-     ev.preventDefault();
-     localStorage.removeItem('id_token');
-     window.location.href = "/";
-  })
+  function logout() {
+    localStorage.removeItem('id_token');
+    localStorage.removeItem('access_token');
+    window.location.href = "/";
+  }
 
-  var show_logged_in = function(username) {
+  function show_logged_in(username) {
     $('form.form-signin').hide();
     $('div.logged-in').show();
-  };
+  }
 
-  var show_sign_in = function() {
+  function show_sign_in() {
     $('div.logged-in').hide();
     $('form.form-signin').show();
-  };
+  }
 
-  var parseHash = function() {
+  function parseHash() {
     var token = localStorage.getItem('id_token');
-    if (null != token) {
+    if (token) {
       show_logged_in();
     } else {
-      var result = auth0.parseHash(window.location.hash);
-      if (result && result.idToken) {
-        localStorage.setItem('id_token', result.idToken);
-        show_logged_in();
-      } else if (result && result.error) {
-        alert('error: ' + result.error);
-        show_sign_in();
-      }
+      auth.parseHash(function(err, authResult) {
+        if (authResult && authResult.accessToken && authResult.idToken) {
+          window.location.hash = '';
+          setUser(authResult);
+          show_logged_in();
+        } else if (authResult && authResult.error) {
+          alert('error: ' + authResult.error);
+          show_sign_in();
+        }
+      });
     }
-  };
+  }
+
+  function setUser(authResult) {
+    localStorage.setItem('access_token', authResult.accessToken);
+    localStorage.setItem('id_token', authResult.idToken);
+  }
 
   parseHash();
 
