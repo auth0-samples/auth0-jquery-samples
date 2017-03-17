@@ -70,7 +70,7 @@ $(document).ready(function() {
     if (token) {
       show_logged_in();
     } else {
-      auth.parseHash(function(err, authResult) {
+      auth.parseHash({ _idTokenVerification: false }, function(err, authResult) {
         if (authResult && authResult.accessToken && authResult.idToken) {
           window.location.hash = '';
           setUser(authResult);
