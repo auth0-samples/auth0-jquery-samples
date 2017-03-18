@@ -15,19 +15,12 @@ $(document).ready(function() {
   function login() {
     var username = $('#username').val();
     var password = $('#password').val();
-    auth.client.login({
-      realm: 'Username-Password-Authentication',
+    auth.redirect.loginWithCredentials({
+      connection: 'Username-Password-Authentication',
       username: username,
       password: password,
-    }, function(err, authResult) {
-      if (err) {
-        alert("something went wrong: " + err.message);
-        return
-      }
-      if (authResult && authResult.idToken && authResult.accessToken) {
-        setUser(authResult);
-        show_logged_in();
-      }
+    }, function(err) {
+      if (err) return alert(err.description);
     });
   }
 
@@ -39,7 +32,7 @@ $(document).ready(function() {
       email: username,
       password: password,
     }, function(err) {
-      if (err) alert("something went wrong: " + err.message);
+      if (err) return alert(err.description);
     });
   }
 
