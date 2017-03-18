@@ -3,7 +3,7 @@ $(document).ready(function() {
   auth = new auth0.WebAuth({
     domain: AUTH0_DOMAIN,
     clientID: AUTH0_CLIENT_ID,
-    redirectUri: window.location.href,
+    redirectUri: AUTH0_CALLBACK_URL,
     responseType: 'token id_token'
   });
 

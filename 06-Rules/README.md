@@ -14,95 +14,34 @@ In order to run the example you need to just start a server. What we suggest is 
 
 1. Install node
 2. run `npm install -g serve`
-3. run `serve` in the directory of the project.
+3. run `serve -p 3000` in the directory of the project.
 
-Go to `http://localhost:3000` and you'll see the app running :).
+Go to `http://localhost:3000` and you'll see the app running.
 
-# Important Snippets
+## What is Auth0?
 
-## 1. Add Lock dependency
+Auth0 helps you to:
 
-```html
-<!-- ===== ./index.html ===== -->
-<head>
-  ...
-  <!-- Auth0 Lock script -->
-  <script src="http://cdn.auth0.com/js/lock/10.3.0/lock.min.js"></script>
-  ...
-</head>
-```
+* Add authentication with [multiple authentication sources](https://docs.auth0.com/identityproviders), either social like **Google, Facebook, Microsoft Account, LinkedIn, GitHub, Twitter, Box, Salesforce, among others**, or enterprise identity systems like **Windows Azure AD, Google Apps, Active Directory, ADFS or any SAML Identity Provider**.
+* Add authentication through more traditional **[username/password databases](https://docs.auth0.com/mysql-connection-tutorial)**.
+* Add support for **[linking different user accounts](https://docs.auth0.com/link-accounts)** with the same user.
+* Support for generating signed [JSON Web Tokens](https://docs.auth0.com/jwt) to call your APIs and **flow the user identity** securely.
+* Analytics of how, when and where users are logging in.
+* Pull data from other sources and add it to the user profile, through [JavaScript rules](https://docs.auth0.com/rules).
 
-## 2. Login and fetch profile
+## Create a free account in Auth0
 
-```javascript
-/* ===== ./app.js ===== */
-...
-lock = new Auth0Lock(AUTH0_CLIENT_ID, AUTH0_DOMAIN);
+1. Go to [Auth0](https://auth0.com) and click Sign Up.
+2. Use Google, GitHub or Microsoft Account to login.
 
-...
+## Issue Reporting
 
-lock.on("authenticated", function(authResult) {
-  lock.getProfile(authResult.idToken, function (err, profile) {
-    if (err) {
-      // Remove expired token (if any)
-      localStorage.removeItem('id_token');
-      // Remove expired profile (if any)
-      localStorage.removeItem('profile');
-      return alert('There was an error getting the profile: ' + err.message);
-    } else {
-      localStorage.setItem('id_token', authResult.idToken);
-      localStorage.setItem('profile', JSON.stringify(profile));
-      showUserProfile(profile);
-    }
-  });
-});
-...
-```
+If you have found a bug or if you have a feature request, please report them at this repository issues section. Please do not report security vulnerabilities on the public GitHub issue tracker. The [Responsible Disclosure Program](https://auth0.com/whitehat) details the procedure for disclosing security issues.
 
-## 3. Show country attribute in profile
+## Author
 
-```html
-<!-- ===== ./index.html ===== -->
-...
-<div id="login" class="row">
-  <h4>You are not logged in</h4>
-  <button type="button" class="btn btn-primary" id="btn-login">Login</button>
-</div>
+[Auth0](auth0.com)
 
-<div id="logged" class="row" style="display: none;">
-  <h4>You are logged in</h4>
-  <div class="row">
-    <div class="col-md-6">
-      <h3>Profile</h3>
-      <img alt="" id="avatar">
-      <p><strong>Name: </strong> <span id="name"></span></p>
-      <p><strong>Email: </strong> <span id="email"></span></p>
-      <p><strong>Nickname: </strong> <span id="nickname"></span></p>
-      <p><strong>Address: </strong> <span id="address"></span></p>
-      <p><strong>Created At: </strong> <span id="created_at"></span></p>
-      <p><strong>Updated At: </strong> <span id="updated_at"></span></p>
-      <p><strong>Country (added by rule): </strong> <span id="country"></span></p>
-    </div>
-  </div>
-  <button type="button" class="btn btn-default" id="btn-logout">Logout</button>
-</div>
-...
-```
+## License
 
-```javascript
-/* ===== ./app.js ===== */
-...
-var showUserProfile = function(profile) {
-  console.log(profile);
-  $('#login').hide();
-  $('#logged').show();
-  $('#avatar').attr('src', profile.picture);
-  $('#name').text(profile.name);
-  $('#email').text(profile.email);
-  $('#nickname').text(profile.nickname);
-  $('#created_at').text(profile.created_at);
-  $('#updated_at').text(profile.updated_at);
-  $('#country').text(profile.country);
-};
-...
-```
+This project is licensed under the MIT license. See the [LICENSE](LICENSE) file for more info.

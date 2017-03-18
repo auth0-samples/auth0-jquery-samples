@@ -14,104 +14,34 @@ In order to run the example you need to just start a server. What we suggest is 
 
 1. Install node
 2. run `npm install -g serve`
-3. run `serve` in the directory of the project.
+3. run `serve -p 3000` in the directory of the project.
 
-Go to `http://localhost:3000` and you'll see the app running :).
+Go to `http://localhost:3000` and you'll see the app running.
 
-# Important Snippets
+## What is Auth0?
 
-## 1. Add Lock dependency
+Auth0 helps you to:
 
-```html
-<!-- ===== ./index.html ===== -->
-<head>
-  ...
-  <!-- Auth0 Lock script -->
-  <script src="http://cdn.auth0.com/js/lock/10.3.0/lock.min.js"></script>
-  ...
-</head>
-```
+* Add authentication with [multiple authentication sources](https://docs.auth0.com/identityproviders), either social like **Google, Facebook, Microsoft Account, LinkedIn, GitHub, Twitter, Box, Salesforce, among others**, or enterprise identity systems like **Windows Azure AD, Google Apps, Active Directory, ADFS or any SAML Identity Provider**.
+* Add authentication through more traditional **[username/password databases](https://docs.auth0.com/mysql-connection-tutorial)**.
+* Add support for **[linking different user accounts](https://docs.auth0.com/link-accounts)** with the same user.
+* Support for generating signed [JSON Web Tokens](https://docs.auth0.com/jwt) to call your APIs and **flow the user identity** securely.
+* Analytics of how, when and where users are logging in.
+* Pull data from other sources and add it to the user profile, through [JavaScript rules](https://docs.auth0.com/rules).
 
-## 2. Add additional fields to signup
+## Create a free account in Auth0
 
-```javascript
-/* ===== ./app.js ===== */
-...
-lock = new Auth0Lock(AUTH0_CIENT_ID, AUTH0_DOMAIN, {
-  ...
-  additionalSignUpFields: [{
-    name: "address",                              // required
-    placeholder: "Enter your address",            // required
-    icon: "https://example.com/address_icon.png", // optional
-    validator: function(value) {                  // optional
-      // only accept addresses with more than 10 characters
-      return value.length > 10;
-    }
-  }]
-});
-...
-```
+1. Go to [Auth0](https://auth0.com) and click Sign Up.
+2. Use Google, GitHub or Microsoft Account to login.
 
-## 3. Fetch profile
+## Issue Reporting
 
-```javascript
-/* ===== ./app.js ===== */
-...
-lock.on("authenticated", function(authResult) {
-  lock.getProfile(authResult.idToken, function (err, profile) {
-    if (err) {
-      // Remove expired token (if any)
-      localStorage.removeItem('id_token');
-      // Remove expired profile (if any)
-      localStorage.removeItem('profile');
-      return alert('There was an error getting the profile: ' + err.message);
-    } else {
-      localStorage.setItem('id_token', authResult.idToken);
-      localStorage.setItem('profile', JSON.stringify(profile));
-      showUserProfile(profile);
-    }
-  });
-});
-...
-```
+If you have found a bug or if you have a feature request, please report them at this repository issues section. Please do not report security vulnerabilities on the public GitHub issue tracker. The [Responsible Disclosure Program](https://auth0.com/whitehat) details the procedure for disclosing security issues.
 
-## 4. Update profile
+## Author
 
-```javascript
-/* ===== ./app.js ===== */
-...
-$('#btn-edit-submit').on('click', function(ev) {
-  ev.preventDefault();
-  var user_address = $('#edit_address').val();
-  $.ajax({
-    url: 'https://' + AUTH0_DOMAIN + '/api/v2/users/' + user_id,
-    method: 'PATCH',
-    data: { user_metadata: {address: user_address} }
-  }).done(function(updated_profile) {
-    localStorage.setItem('profile', JSON.stringify(updated_profile));
-    showUserProfile(updated_profile);
-  }).fail(function(jqXHR, textStatus) {
-    alert("Request failed: " + textStatus);
-  });
-});
-...
-```
+[Auth0](auth0.com)
 
-```html
-<!-- ===== ./index.html ===== -->
-...
-<div id="edit_profile" class="row" style="display: none;">
-  <div class="col-md-6">
-    <h3>Profile</h3>
-    <img alt="" id="edit-avatar">
-    <form>
-      <div class="form-group">
-        <label for="name">Address</label>
-        <input type="text" class="form-control" id="edit_address" placeholder="Enter address">
-      </div>
-      <button type="submit" class="btn btn-default" id="btn-edit-submit">Submit</button>
-    </form>
-  </div>
-</div>
-...
-```
+## License
+
+This project is licensed under the MIT license. See the [LICENSE](LICENSE) file for more info.

@@ -14,105 +14,34 @@ In order to run the example you need to just start a server. What we suggest is 
 
 1. Install node
 2. run `npm install -g serve`
-3. run `serve` in the directory of the project.
+3. run `serve -p 3000` in the directory of the project.
 
-Go to `http://localhost:3000` and you'll see the app running :).
+Go to `http://localhost:3000` and you'll see the app running.
 
-# Important Snippets
+## What is Auth0?
 
-# 1. Add auth0.js dependency
-```html
-<!-- ===== ./index.html ===== -->
-<head>
-  ...
-  <!-- Auth0 library -->
-  <script src="//cdn.auth0.com/w2/auth0-7.0.3.min.js"></script>
-  ...
-</head>
-```
+Auth0 helps you to:
 
-# 2. Login with Auth0
-```javascript
-// ===== ./app.js =====
-$(document).ready(function() {
-  var auth0 = null;
-  auth0 = new Auth0({
-    domain: AUTH0_DOMAIN,
-    clientID: AUTH0_CLIENT_ID,
-    callbackOnLocationHash: true,
-    callbackURL: 'http://YOUR_APP/callback',
-  });
+* Add authentication with [multiple authentication sources](https://docs.auth0.com/identityproviders), either social like **Google, Facebook, Microsoft Account, LinkedIn, GitHub, Twitter, Box, Salesforce, among others**, or enterprise identity systems like **Windows Azure AD, Google Apps, Active Directory, ADFS or any SAML Identity Provider**.
+* Add authentication through more traditional **[username/password databases](https://docs.auth0.com/mysql-connection-tutorial)**.
+* Add support for **[linking different user accounts](https://docs.auth0.com/link-accounts)** with the same user.
+* Support for generating signed [JSON Web Tokens](https://docs.auth0.com/jwt) to call your APIs and **flow the user identity** securely.
+* Analytics of how, when and where users are logging in.
+* Pull data from other sources and add it to the user profile, through [JavaScript rules](https://docs.auth0.com/rules).
 
-  $('#btn-login').on('click', function(ev) {
-    ev.preventDefault();
-    var username = $('#username').val();
-    var password = $('#password').val();
-    auth0.login({
-      connection: 'Username-Password-Authentication',
-      responseType: 'token',
-      email: username,
-      password: password,
-    }, function(err) {
-      if (err) {
-        alert("something went wrong: " + err.message);
-      } else {
-      }
-    });
-  });
-});
-```
+## Create a free account in Auth0
 
-# 3. Register with Auth0
-```javascript
-// ===== ./app.js =====
-$(document).ready(function() {
-  //...
-  $('#btn-register').on('click', function(ev) {
-    ev.preventDefault();
-    var username = $('#username').val();
-    var password = $('#password').val();
-    auth0.signup({
-      connection: 'Username-Password-Authentication',
-      responseType: 'token',
-      email: username,
-      password: password,
-    }, function(err) {
-      if (err) alert("something went wrong: " + err.message);
-    });
-  });
-});
-```
+1. Go to [Auth0](https://auth0.com) and click Sign Up.
+2. Use Google, GitHub or Microsoft Account to login.
 
-# 4. Social login (Google example)
-```javascript
-// ===== ./app.js =====
-$(document).ready(function() {
-  //...
-  $('#btn-google').on('click', function(ev) {
-    ev.preventDefault();
-    auth0.login({
-      connection: 'google-oauth2'
-    }, function(err) {
-      if (err) alert("something went wrong: " + err.message);
-    });
-  });
-});
-```
+## Issue Reporting
 
-# 5. Parse hash
-```javascript
-// ===== ./app.js =====
-$(document).ready(function() {
-  //...
-  var parseHash = function() {
-    var result = auth0.parseHash(window.location.hash);
-    if (result && result.idToken) {
-      localStorage.setItem('id_token', result.idToken);
-    } else if (result && result.error) {
-      alert('error: ' + result.error);
-    }
-  };
+If you have found a bug or if you have a feature request, please report them at this repository issues section. Please do not report security vulnerabilities on the public GitHub issue tracker. The [Responsible Disclosure Program](https://auth0.com/whitehat) details the procedure for disclosing security issues.
 
-  parseHash();
-});
-```
+## Author
+
+[Auth0](auth0.com)
+
+## License
+
+This project is licensed under the MIT license. See the [LICENSE](LICENSE) file for more info.
