@@ -1,38 +1,45 @@
-$('document').ready(function() {
+$('docuemnt').ready(function() {
   var content = $('.content');
   var loadingSpinner = $('#loading');
   content.css('display', 'block');
-  loadingSpinner.css('display', 'none');;
+  loadingSpinner.css('display', 'none');
 
-  var webAuth = new auth0.WebAuth({
-    domain: AUTH0_DOMAIN,
-    clientID: AUTH0_CLIENT_ID,
-    redirectUri: AUTH0_CALLBACK_URL,
-    audience: 'https://' + AUTH0_DOMAIN + '/userinfo',
-    responseType: 'token id_token',
-    scope: 'openid'
+  var lock = new Auth0Lock(AUTH0_CLIENT_ID, AUTH0_DOMAIN, {
+    oidcConformant: true,
+    autoclose: true,
+    auth: {
+      redirectUrl: AUTH0_CALLBACK_URL,
+      responseType: 'token id_token',
+      audience: 'https://' + AUTH0_DOMAIN + '/userinfo',
+      params: {
+        scope: 'openid'
+      }
+    }
   });
 
-  var loginStatus = $('.container h4');
-  var loginView = $('#login-view');
-  var homeView = $('#home-view');
+  lock.on('authenticated', function(authResult) {
+    if (authResult && authResult.accessToken && authResult.idToken) {
+      setSession(authResult);
+    }
+    displayButtons();
+  });
+
+  lock.on('authorization_error', function(err) {
+    console.log(err);
+    alert('Error: ' + err.error + '. Check the console for further details.');
+    displayButtons();
+  });
 
   // buttons and event listeners
-  var homeViewBtn = $('#btn-home-view');
   var loginBtn = $('#btn-login');
   var logoutBtn = $('#btn-logout');
 
-  homeViewBtn.click(function() {
-    homeView.css('display', 'inline-block');
-    loginView.css('display', 'none');
-  });
-
-  loginBtn.click(function(e) {
-    e.preventDefault();
-    webAuth.authorize();
-  });
-
+  loginBtn.click(login);
   logoutBtn.click(logout);
+
+  function login() {
+    lock.show();
+  }
 
   function setSession(authResult) {
     // Set the time that the access token will expire at
@@ -59,25 +66,8 @@ $('document').ready(function() {
     return new Date().getTime() < expiresAt;
   }
 
-  function handleAuthentication() {
-    webAuth.parseHash(function(err, authResult) {
-      if (authResult && authResult.accessToken && authResult.idToken) {
-        window.location.hash = '';
-        setSession(authResult);
-        loginBtn.css('display', 'none');
-        homeView.css('display', 'inline-block');
-      } else if (err) {
-        homeView.css('display', 'inline-block');
-        console.log(err);
-        alert(
-          'Error: ' + err.error + '. Check the console for further details.'
-        );
-      }
-      displayButtons();
-    });
-  }
-
   function displayButtons() {
+    var loginStatus = $('.container h4');
     if (isAuthenticated()) {
       loginBtn.css('display', 'none');
       logoutBtn.css('display', 'inline-block');
@@ -89,5 +79,5 @@ $('document').ready(function() {
     }
   }
 
-  handleAuthentication();
+  displayButtons();
 });

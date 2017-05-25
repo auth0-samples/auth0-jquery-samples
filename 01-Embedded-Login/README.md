@@ -1,6 +1,6 @@
-# Auth0 jQuery User Profile
+# Auth0 jQuery Embedded Login
 
-This sample demonstrates how to get a user's profile using Auth0 in a jQuery application.
+This sample demonstrates how to add authentication to a jQuery application using Auth0's Lock widget.
 
 ## Getting Started
 
@@ -9,7 +9,7 @@ If you haven't already done so, [sign up](https://auth0.com) for your free Auth0
 Clone the repo or download it from the JavaScript quickstart page in Auth0's documentation.
 
 ```bash
-cd 02-User-Profile
+cd 01-Embedded-Login
 npm install
 ```
 

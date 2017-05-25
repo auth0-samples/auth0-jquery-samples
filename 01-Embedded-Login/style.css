@@ -6,10 +6,6 @@
   margin-top: 7px
 }
 
-#login-view {
-  display: none;
-}
-
 #loading {
   position: absolute;
   display: flex;
