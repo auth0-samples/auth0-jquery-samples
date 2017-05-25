@@ -1,6 +1,6 @@
-# Auth0 jQuery Login
+# Auth0 jQuery User Profile
 
-This sample demonstrates how to add authentication to a jQuery application with Auth0. The sample makes use of Auth0's hosted login page which provides centralized authentication.
+This sample demonstrates how to get a user's profile using Auth0 in a jQuery application.
 
 ## Getting Started
 
@@ -9,7 +9,7 @@ If you haven't already done so, [sign up](https://auth0.com) for your free Auth0
 Clone the repo or download it from the JavaScript quickstart page in Auth0's documentation.
 
 ```bash
-cd 01-Login
+cd 02-User-Profile
 npm install
 ```
 
@@ -54,6 +54,5 @@ If you have found a bug or if you have a feature request, please report them at 
 ## License
 
 This project is licensed under the MIT license. See the [LICENSE](LICENSE.txt) file for more info.
-
 
 

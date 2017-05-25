@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Login</title>
+  <title>User Profile</title>
   <base href="/">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,10 +19,14 @@
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a class="navbar-brand" href="#">Auth0 - jQuery</a>
+          <a class="navbar-brand" href="#">Auth0 - JavaScript</a>
 
           <button id="btn-home-view" class="btn btn-primary btn-margin">
               Home
+          </button>
+
+          <button id="btn-profile-view" class="btn btn-primary btn-margin">
+              Profile
           </button>
 
           <button id="btn-login" class="btn btn-primary btn-margin">
@@ -42,9 +46,20 @@
       <div id="home-view">
         <h4></h4>
       </div>
-      
-    </main>
 
+      <!-- profile view -->
+      <div id="profile-view" class="panel panel-default profile-area">
+        <div class="panel-heading"><h3>Profile</h3></div>
+          <div class="panel-body">
+            <img class="avatar" alt="avatar">
+            <div>
+              <label><i class="glyphicon glyphicon-user"></i> Nickname</label>
+              <h3 class="nickname"></h3>
+            </div>
+            <pre class="full-profile"></pre>
+          </div>
+      </div>
+    </main>
   </div>
 
   <script src="node_modules/jquery/dist/jquery.js"></script>
