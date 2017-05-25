@@ -2,3 +2,4 @@
 /node_modules
 auth0-variables.js
 .env
+npm-debug.log

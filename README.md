@@ -1,6 +1,10 @@
 # Auth0 jQuery Samples
 
-These samples demonstrate how to implement user authentication in a jQuery application using Auth0.
+These samples demonstrate how to add authentication to an jQuery application with Auth0. Each folder contains a distinct application so that various Auth0 features can be viewed in isolation.
+
+These samples use Auth0's [hosted login page](https://auth0.com/docs/hosted-pages/login) which offers the fastest, most secure, and most feature-rich way to add authentication to your app.
+
+For examples which demonstrate embedding the Lock widget directly into your application, see the [embedded-login](https://github.com/auth0-samples/auth0-jquery-samples/tree/embedded-login) branch.
 
 ## What is Auth0?
 
