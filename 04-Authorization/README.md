@@ -1,6 +1,6 @@
-# Auth0 jQuery Calling an API
+# Auth0 jQuery Authorization
 
-This sample demonstrates how to make secure calls to an API after authenticating a user with Auth0. The calls to the API are made with the user's `access_token`.
+This sample demonstrates how to include user authorization in a jQuery application with Auth0.
 
 ## Getting Started
 
@@ -11,7 +11,7 @@ If you haven't already done so, create a new API in the [APIs section](https://m
 Clone the repo or download it from the JavaScript quickstart page in Auth0's documentation.
 
 ```bash
-cd 03-Calling-an-API
+cd 04-Authorization
 npm install
 ```
 
