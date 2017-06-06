@@ -6,7 +6,7 @@ $('document').ready(function() {
 
   var userProfile;
   var apiUrl = 'http://localhost:3001/api';
-  var requestedScopes = 'openid profile read:messages';
+  var requestedScopes = 'openid profile read:messages write:messages';
 
   var webAuth = new auth0.WebAuth({
     domain: AUTH0_DOMAIN,
@@ -216,7 +216,9 @@ $('document').ready(function() {
   }
 
   function userHasScopes(scopes) {
-    var grantedScopes = JSON.parse(localStorage.getItem('scopes')).split(' ');
+    var savedScopes = JSON.parse(localStorage.getItem('scopes'));
+    if (!savedScopes) return false;
+    var grantedScopes = savedScopes.split(' ');
     for (var i = 0; i < scopes.length; i++) {
       if (grantedScopes.indexOf(scopes[i]) < 0) {
         return false;
