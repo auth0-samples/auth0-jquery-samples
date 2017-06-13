@@ -14,7 +14,8 @@ $('document').ready(function() {
     redirectUri: AUTH0_CALLBACK_URL,
     audience: API_ID,
     responseType: 'token id_token',
-    scope: requestedScopes
+    scope: requestedScopes,
+    leeway: 30
   });
 
   var homeView = $('#home-view');
