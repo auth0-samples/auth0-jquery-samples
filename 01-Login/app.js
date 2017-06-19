@@ -10,7 +10,8 @@ $('document').ready(function() {
     redirectUri: AUTH0_CALLBACK_URL,
     audience: 'https://' + AUTH0_DOMAIN + '/userinfo',
     responseType: 'token id_token',
-    scope: 'openid'
+    scope: 'openid',
+    leeway: 30
   });
 
   var loginStatus = $('.container h4');
