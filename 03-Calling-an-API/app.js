@@ -11,7 +11,7 @@ $('document').ready(function() {
     domain: AUTH0_DOMAIN,
     clientID: AUTH0_CLIENT_ID,
     redirectUri: AUTH0_CALLBACK_URL,
-    audience: API_ID,
+    audience: AUTH0_AUDIENCE,
     responseType: 'token id_token',
     scope: 'openid profile read:messages',
     leeway: 30
