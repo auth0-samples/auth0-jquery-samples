@@ -14,7 +14,7 @@ $('document').ready(function() {
     audience: AUTH0_AUDIENCE,
     responseType: 'token id_token',
     scope: 'openid profile read:messages',
-    leeway: 30
+    leeway: 60
   });
 
   var homeView = $('#home-view');
