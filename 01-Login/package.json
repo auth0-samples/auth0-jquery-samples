@@ -9,11 +9,11 @@
   "author": "Auth0",
   "license": "MIT",
   "dependencies": {
-    "auth0-js": "^8.7.0",
+    "auth0-js": "^8.8.0",
     "bootstrap": "^3.3.7",
     "jquery": "^3.2.1"
   },
   "devDependencies": {
-    "serve": "^5.1.5"
+    "serve": "^6.0.0"
   }
 }
