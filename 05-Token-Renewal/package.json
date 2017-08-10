@@ -1,0 +1,24 @@
+{
+  "name": "token-renewal",
+  "version": "0.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "npm-run-all --parallel server client",
+    "server": "node server.js",
+    "client": "serve"
+  },
+  "author": "Auth0",
+  "license": "MIT",
+  "dependencies": {
+    "auth0-js": "^8.8.0",
+    "bootstrap": "^3.3.7",
+    "connect-static-file": "^1.2.0",
+    "cors": "^2.8.3",
+    "dotenv": "^4.0.0",
+    "express": "^4.15.3",
+    "jquery": "^3.2.1",
+    "npm-run-all": "^4.0.2",
+    "serve": "^6.0.0"
+  }
+}
