@@ -11,7 +11,6 @@ $('document').ready(function() {
     domain: AUTH0_DOMAIN,
     clientID: AUTH0_CLIENT_ID,
     redirectUri: AUTH0_CALLBACK_URL,
-    audience: AUTH0_AUDIENCE,
     responseType: 'token id_token',
     scope: 'openid profile',
     leeway: 60
@@ -29,7 +28,7 @@ $('document').ready(function() {
   var homeViewBtn = $('#btn-home-view');
   var profileViewBtn = $('#btn-profile-view');
 
-  var renewTokenBtn = $('#btn-renew-token');
+  var checkSessionBtn = $('#btn-renew-token');
   var accessTokenMessage = $('#access-token-message');
   var tokenExpiryDate = $('#token-expiry-date');
 
@@ -51,7 +50,7 @@ $('document').ready(function() {
 
   logoutBtn.click(logout);
 
-  renewTokenBtn.click(function() {
+  checkSessionBtn.click(function() {
     renewToken();
   });
 
@@ -89,7 +88,7 @@ $('document').ready(function() {
       loginBtn.css('display', 'none');
       logoutBtn.css('display', 'inline-block');
       profileViewBtn.css('display', 'inline-block');
-      renewTokenBtn.css('display', 'inline-block');
+      checkSessionBtn.css('display', 'inline-block');
       accessTokenMessage.css('display', 'inline-block');
       loginStatus.text(
         'You are logged in! You can now view your profile area.'
@@ -101,7 +100,7 @@ $('document').ready(function() {
       logoutBtn.css('display', 'none');
       profileViewBtn.css('display', 'none');
       profileView.css('display', 'none');
-      renewTokenBtn.css('display', 'none');
+      checkSessionBtn.css('display', 'none');
       accessTokenMessage.css('display', 'none');
       loginStatus.text('You are not logged in! Please log in to continue.');
     }
@@ -152,16 +151,11 @@ $('document').ready(function() {
   }
 
   function renewToken() {
-    webAuth.renewAuth(
-      {
-        audience: AUTH0_AUDIENCE,
-        redirectUri: AUTH0_SILENT_AUTH_REDIRECT,
-        usePostMessage: true
-      },
+    webAuth.checkSession({},
       function(err, result) {
         if (err) {
           alert(
-            'Could not get a new token using silent authentication. ' +
+            'Could not get a new token. ' +
               err.description
           );
         } else {
