@@ -1,6 +1,6 @@
 # Auth0 jQuery Samples
 
-These samples demonstrate how to add authentication to an jQuery application with Auth0. Each folder contains a distinct application so that various Auth0 features can be viewed in isolation.
+These samples demonstrate how to add authentication to an jQuery application with Auth0. Each folder contains a distinct application so that various Auth0 features can be viewed in isolation. You can read about these examples in our [JQuery Quickstart](https://auth0.com/docs/quickstart/spa/jquery).
 
 ## Embedded Integration Samples
 
