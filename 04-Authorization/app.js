@@ -34,6 +34,7 @@ $('document').ready(function() {
 
   var pingPublic = $('#btn-ping-public');
   var pingPrivate = $('#btn-ping-private');
+  var pingPrivateScoped = $('#btn-ping-private-scoped');
   var pingAdmin = $('#btn-ping-admin');
 
   var callPrivateMessage = $('#call-private-message');
@@ -52,6 +53,16 @@ $('document').ready(function() {
 
   pingPrivate.click(function() {
     callAPI('/private', true, 'GET', function(err, message) {
+      if (err) {
+        alert(err);
+        return;
+      }
+      pingMessage.text(message);
+    });
+  });
+
+  pingPrivateScoped.click(function() {
+    callAPI('/private-scoped', true, 'GET', function(err, message) {
       if (err) {
         alert(err);
         return;

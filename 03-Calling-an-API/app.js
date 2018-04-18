@@ -31,6 +31,7 @@ $('document').ready(function() {
 
   var pingPublic = $('#btn-ping-public');
   var pingPrivate = $('#btn-ping-private');
+  var pingPrivateScoped = $('#btn-ping-private-scoped');
 
   var callPrivateMessage = $('#call-private-message');
   var pingMessage = $('#ping-message');
@@ -41,6 +42,10 @@ $('document').ready(function() {
 
   pingPrivate.click(function() {
     callAPI('/private', true);
+  });
+
+  pingPrivateScoped.click(function() {
+    callAPI('/private-scoped', true);
   });
 
   loginBtn.click(login);
@@ -102,6 +107,7 @@ $('document').ready(function() {
       logoutBtn.css('display', 'inline-block');
       profileViewBtn.css('display', 'inline-block');
       pingPrivate.css('display', 'inline-block');
+      pingPrivateScoped.css('display', 'inline-block');
       callPrivateMessage.css('display', 'none');
       loginStatus.text(
         'You are logged in! You can now send authenticated requests to your server.'
@@ -114,6 +120,7 @@ $('document').ready(function() {
       profileView.css('display', 'none');
       pingView.css('display', 'none');
       pingPrivate.css('display', 'none');
+      pingPrivateScoped.css('display', 'none');
       callPrivateMessage.css('display', 'block');
       loginStatus.text('You are not logged in! Please log in to continue.');
     }
