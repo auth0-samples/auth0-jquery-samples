@@ -22,8 +22,8 @@ $('document').ready(function() {
   var pingView = $('#ping-view');
 
   // buttons and event listeners
-  var loginBtn = $('#btn-login');
-  var logoutBtn = $('#btn-logout');
+  var loginBtn = $('#qsLoginBtn');
+  var logoutBtn = $('#qsLogoutBtn');
 
   var homeViewBtn = $('#btn-home-view');
   var profileViewBtn = $('#btn-profile-view');
