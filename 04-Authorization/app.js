@@ -24,8 +24,8 @@ $('document').ready(function() {
   var adminView = $('#admin-view');
 
   // buttons and event listeners
-  var loginBtn = $('#btn-login');
-  var logoutBtn = $('#btn-logout');
+  var loginBtn = $('#qsLoginBtn');
+  var logoutBtn = $('#qsLogoutBtn');
 
   var homeViewBtn = $('#btn-home-view');
   var profileViewBtn = $('#btn-profile-view');

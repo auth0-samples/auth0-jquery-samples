@@ -20,8 +20,8 @@ $('document').ready(function() {
 
   // buttons and event listeners
   var homeViewBtn = $('#btn-home-view');
-  var loginBtn = $('#btn-login');
-  var logoutBtn = $('#btn-logout');
+  var loginBtn = $('#qsLoginBtn');
+  var logoutBtn = $('#qsLogoutBtn');
 
   homeViewBtn.click(function() {
     homeView.css('display', 'inline-block');
