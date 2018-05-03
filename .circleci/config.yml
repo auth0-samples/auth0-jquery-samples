@@ -84,7 +84,7 @@ jobs:
   05-token-renewal:
     machine: true
     environment:
-      - AUTH0_CFG: 05-Token-Renewal/auth0-variables.ts
+      - AUTH0_CFG: 05-Token-Renewal/auth0-variables.js
       - SAMPLE_PATH: 05-Token-Renewal
     <<: *defaults
 
