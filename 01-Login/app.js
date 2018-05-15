@@ -10,7 +10,7 @@ $('document').ready(function() {
     redirectUri: AUTH0_CALLBACK_URL,
     audience: 'https://' + AUTH0_DOMAIN + '/userinfo',
     responseType: 'token id_token',
-    scope: 'openid',
+    scope: 'openid profile email',
     leeway: 60
   });
 
