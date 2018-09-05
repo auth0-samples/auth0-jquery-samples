@@ -8,7 +8,6 @@ $('document').ready(function() {
     domain: AUTH0_DOMAIN,
     clientID: AUTH0_CLIENT_ID,
     redirectUri: AUTH0_CALLBACK_URL,
-    audience: 'https://' + AUTH0_DOMAIN + '/userinfo',
     responseType: 'token id_token',
     scope: 'openid profile email',
     leeway: 60
