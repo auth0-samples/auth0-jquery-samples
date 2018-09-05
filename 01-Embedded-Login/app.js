@@ -9,7 +9,6 @@ $('docuemnt').ready(function() {
     auth: {
       redirectUrl: AUTH0_CALLBACK_URL,
       responseType: 'token id_token',
-      audience: 'https://' + AUTH0_DOMAIN + '/userinfo',
       params: {
         scope: 'openid'
       }
