@@ -1,4 +1,4 @@
-$('docuemnt').ready(function() {
+$('document').ready(function() {
   var content = $('.content');
   var loadingSpinner = $('#loading');
   content.css('display', 'block');
