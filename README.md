@@ -1,4 +1,8 @@
-# Auth0 jQuery Samples
+# Auth0 jQuery Samples [DEPRECATED]
+
+## Deprecation notice
+
+This repository has been deprecated and is no longer maintained.
 
 [![CircleCI](https://circleci.com/gh/auth0-samples/auth0-jquery-samples.svg?style=svg)](https://circleci.com/gh/auth0-samples/auth0-jquery-samples)
 
